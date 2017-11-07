@@ -1,0 +1,6 @@
+# Generated package for remote ex stress test
+load(":stress.bzl", "remote_ex_rule")
+<% @targets.each do |target| -%>
+
+<%= target.render -%>
+<% end -%>

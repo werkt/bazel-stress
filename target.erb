@@ -1,0 +1,15 @@
+<%= @rule %>(
+    name = "<%= @name %>",
+    usecs = <%= rand(1000000) %>,
+<% unless @deps.empty? -%>
+<% if @deps.size == 1 -%>
+    deps = ["<%= @deps[0] %>"],
+<% else -%>
+    deps = [
+<% for dep in @deps -%>
+        "<%= dep %>",
+<% end -%>
+    ],
+<% end -%>
+<% end -%>
+)
