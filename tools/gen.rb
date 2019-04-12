@@ -9,7 +9,7 @@ class Target
     @deps = deps
   end
 
-  TEMPLATE = File.read("target.erb")
+  TEMPLATE = File.read("tools/target.erb")
 
   def self.renderer
     @erb ||= ERB.new(TEMPLATE, safe_level=nil, trim_mode=?-)
@@ -52,7 +52,7 @@ class Package
     @targets = targets
   end
 
-  TEMPLATE = File.read("package.erb")
+  TEMPLATE = File.read("tools/package.erb")
 
   def self.renderer
     @erb ||= ERB.new(TEMPLATE, safe_level=nil, trim_mode=?-)
@@ -104,7 +104,7 @@ class LinearNoise
 
   def generate
     @keypoints[0] = rand
-    @keypoints[1 << @shift]
+    @keypoints[1 << @shift] = rand
 
     generate_at(1 << (@shift - 1), 1 << (@shift - 1), 1.0)
 
@@ -126,9 +126,12 @@ class LinearNoise
   end
 end
 
-noise = LinearNoise.new(7)
+shift = ARGV[0].to_i
+desired_actions = ARGV[1].to_i
 
-noise_factor = ((100000 - noise.size) / noise.sum)
+noise = LinearNoise.new(shift)
+
+noise_factor = ((desired_actions - noise.size) / noise.sum)
 
 package_builder = Package::Builder.new
 

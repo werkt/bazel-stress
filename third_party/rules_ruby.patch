@@ -1,0 +1,22 @@
+--- ruby/private/library.bzl	2019-04-12 14:28:59.026302254 -0400
++++ ruby/private/library.bzl	2019-04-12 14:29:02.890307286 -0400
+@@ -38,7 +38,7 @@
+         ),
+         "data": attr.label_list(
+             allow_files = True,
+-            cfg = "data",
++            cfg = "host",
+         ),
+     },
+ )
+--- ruby/private/binary.bzl.orig	2019-04-12 14:33:22.042642589 -0400
++++ ruby/private/binary.bzl	2019-04-12 14:33:11.854629476 -0400
+@@ -65,7 +65,7 @@
+     "rubyopt": attr.string_list(),
+     "data": attr.label_list(
+         allow_files = True,
+-        cfg = "data",
++        cfg = "host",
+     ),
+     "main": attr.label(
+         allow_single_file = True,
